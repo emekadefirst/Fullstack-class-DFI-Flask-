@@ -1,13 +1,12 @@
-from flask import Flask # imports
+from flask import Flask, render_template
 
-apk = Flask(__name__) # initializing WSGI
 
-#views(i.e the function and route on top of the function)
-@apk.route("/") 
-def hello_world():
-    return "<p>Hello, World!</p>"
+apk = Flask(__name__) 
 
 
 @apk.route("/home")
-def home():
-    return "<p>Welcom Home!</p>"
+def home(name=None):
+    return render_template('index.html', name=name)
+
+if __name__ == "__main__":
+    apk.run(debug=True)
